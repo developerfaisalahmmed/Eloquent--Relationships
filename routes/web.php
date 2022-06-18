@@ -15,7 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $foods = \App\Models\Foods::with('allergies','categories')->get();
+    $foods = \App\Models\Foods::with('allergies', 'categories')->get();
 //    return $foods;
-    return view('welcome',compact('foods'));
+    return view('welcome', compact('foods'));
 });
+
+Route::get('/foods', function () {
+
+    $foods = \App\Models\Foods::with('allergies', 'categories')->get();
+//    return $foods;
+
+    return response()->json($foods);
+});
+
